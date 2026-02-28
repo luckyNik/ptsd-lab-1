@@ -29,7 +29,7 @@ pub fn divide(a: f64, b: f64) -> Result<f64, String> {
     if b == 0.0 {
         return Err("Division by zero".to_string());
     }
-    
+
     let result = a / b;
     if result.is_finite() {
         Ok(result)
@@ -45,7 +45,7 @@ fn main() {
         Ok(result) => println!("10.0 + 5.0 = {}", result),
         Err(e) => println!("Error: {}", e),
     }
-    
+
     match divide(10.0, 0.0) {
         Ok(result) => println!("10.0 / 0.0 = {}", result),
         Err(e) => println!("Error: {}", e),
@@ -89,21 +89,33 @@ mod tests {
 
     #[test]
     fn test_add_overflow_negative() {
-        assert_eq!(add(f64::MAX, f64::MAX), Err("Addition resulted in overflow or NaN".to_string()));
+        assert_eq!(
+            add(f64::MAX, f64::MAX),
+            Err("Addition resulted in overflow or NaN".to_string())
+        );
     }
 
     #[test]
     fn test_subtract_underflow_negative() {
-        assert_eq!(subtract(f64::MIN, f64::MAX), Err("Subtraction resulted in overflow or NaN".to_string()));
+        assert_eq!(
+            subtract(f64::MIN, f64::MAX),
+            Err("Subtraction resulted in overflow or NaN".to_string())
+        );
     }
 
     #[test]
     fn test_multiply_overflow_negative() {
-        assert_eq!(multiply(f64::MAX, 2.0), Err("Multiplication resulted in overflow or NaN".to_string()));
+        assert_eq!(
+            multiply(f64::MAX, 2.0),
+            Err("Multiplication resulted in overflow or NaN".to_string())
+        );
     }
-    
+
     #[test]
     fn test_nan_handling_negative() {
-        assert_eq!(add(f64::NAN, 5.0), Err("Addition resulted in overflow or NaN".to_string()));
+        assert_eq!(
+            add(f64::NAN, 5.0),
+            Err("Addition resulted in overflow or NaN".to_string())
+        );
     }
 }
